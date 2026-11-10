@@ -1,6 +1,6 @@
 # Polymer formulation candidate libraries
 
-This V47 release candidate contains research code and frozen protocol settings for Supporting Information S79–S82. The MIT license applies to the included author code. Third-party data, trained weights, generated libraries, and trajectory archives are excluded.
+This repository contains research code and frozen protocol settings for Supporting Information S79–S82. The MIT license applies to the included author code. Third-party data, trained weights, generated libraries, and trajectory archives are excluded.
 
 ## Setup and startup checks
 
