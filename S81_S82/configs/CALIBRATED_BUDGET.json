@@ -1,0 +1,25 @@
+{
+  "status": "FROZEN_AFTER_TIME_ONLY_CALIBRATION_BEFORE_FORMAL_CONTRAST_RESULTS",
+  "anchor_A_seconds": 8.618995600001654,
+  "anchor_B_seconds": 9.927888099977281,
+  "A2_primary_extra_passes": 2,
+  "A2_execute_secondary_one_if_zero": false,
+  "A3_primary_atomic_units": 0,
+  "A3_execute_secondary_one_if_zero": true,
+  "B2_primary_8000_batches": 5,
+  "B2_execute_secondary_one_if_zero": false,
+  "calibration": {
+    "MPG_GA_GA_40000_seconds": 8.618995600001654,
+    "MPG_GA_accepted": 34034,
+    "Generator_GA_GA_40000_seconds": 9.927888099977281,
+    "Generator_GA_accepted": 36685,
+    "MPGA_state_reconstruction_seconds": 394.70867459999863,
+    "reconstruction_max_abs_projected_endpoint_difference": 0.0,
+    "reconstruction_exact_projected_endpoint_identity": true,
+    "MPGA_continue_one_pass_seconds": 3.841887799993856,
+    "MPGA_new_start_atomic_seconds": 8.641691199998604,
+    "Generator_new_8000_seconds": 1.705726100015454
+  },
+  "budget_selected_only_from_time": true,
+  "calibration_outcomes_not_used": true
+}

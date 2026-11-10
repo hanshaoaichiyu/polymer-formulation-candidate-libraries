@@ -1,0 +1,69 @@
+{
+  "status": "FROZEN_BEFORE_CALIBRATION_OR_FORMAL_CONTRAST_RESULTS",
+  "frozen_at": "2026-11-06T00:00:00+08:00",
+  "case": "industrial_pp_100",
+  "replicates": [1, 2, 3, 4, 5],
+  "common_scientific_definition": {
+    "predictor": "frozen industrial PP RBF evaluator",
+    "Q_windows_constraints_precision_projection_audit": "unchanged",
+    "high_Q_threshold": 0.75,
+    "identity": "support plus native-lattice integer coordinate",
+    "baseline_union_rule": "every arm retains the same original feasible baseline pool and adds only newly discovered feasible coordinates",
+    "statistical_unit": "complete run; candidates are not independent repeats"
+  },
+  "A_MPGA_then_GA": {
+    "A0": "original per-start highest-Q feasible MPGA representative pool; no added search",
+    "A1": "same baseline plus original-protocol MPG-GA accepted visits",
+    "A2": "same baseline plus accepted visits from true continuation of reconstructed original terminal MPGA state",
+    "A3": "same baseline plus visits from independent original-distribution MPGA starts",
+    "continuation_rule": "reconstruct terminal x, gradient, objective and stop reason deterministically from original starts and frozen optimizer; verify paired endpoint identity before extension; only max-update survivors are eligible; stationary and line-search-failed starts remain stopped",
+    "new_start_atomic_unit": "one independent hit-and-run start per each of 80 supports, preserving balanced support coverage; atomic units rotate the four original chain slots and four units recover the original four-chain allocation; 120 frozen MPGA updates",
+    "new_start_seed_base": 2413100,
+    "new_start_seed_formula": "base + replicate*1000000 + atomic_unit*100000 + support*100 + (atomic_unit mod 4)",
+    "if_state_reconstruction_fails": "do not label any alternative as continuation; report the missing state and stop A2"
+  },
+  "B_Generator_then_GA": {
+    "B0": "original frozen Generator candidate pool; no added search",
+    "B1": "same baseline plus original-protocol Generator-GA accepted visits",
+    "B2": "same baseline plus additional inference from the same frozen generator checkpoint, independent seed, same projection and audit, no retraining and no GA",
+    "generator_training_cost": "common sunk cost reported separately",
+    "new_sampling_atomic_unit": "one balanced 8,000-candidate batch, 100 candidates per support",
+    "new_sampling_seed_base": 2201000,
+    "new_sampling_seed_formula": "base + replicate*100000 + batch"
+  },
+  "cost_calibration": {
+    "hardware": "same local machine; serial execution; no competing experiment",
+    "warmup": "one excluded technical warmup for each computational kernel",
+    "GA_anchor": "dedicated no-logging 40,000-attempt replay using replicate 1 frozen inputs; MPG-GA anchors A and Generator-GA anchors B",
+    "primary_budget": "maximum whole predeclared atomic work units whose calibrated wall time does not exceed the route-specific GA anchor",
+    "secondary_budget": "when the minimum scientifically valid atomic unit exceeds the anchor, execute one full atomic unit as an explicitly over-budget feasibility/cost measurement; do not call it equal time",
+    "formal_execution": "fixed work counts from calibration, not wall-clock early stopping",
+    "timing": "generation or optimization, in-memory trajectory collection, projection and common audit are included; file serialization is excluded; CUDA kernels synchronized before and after",
+    "budget_curve_fractions": [0.25, 0.5, 1.0],
+    "reported_raw_counts": [
+      "candidate-level predictor forwards",
+      "gradient evaluations",
+      "line-search forward trials",
+      "audit candidates",
+      "generator inference candidates",
+      "hit-and-run transitions",
+      "wall time",
+      "hardware, batch and precision"
+    ]
+  },
+  "evaluation": {
+    "complete_supply": ["new unique feasible coordinates", "Q>=0.75 unique coordinates", "supports", "new versus repeated visits"],
+    "fixed_selection": "existing within-run/support median-Q floor, highest-Q first, then farthest scaled-coordinate rule; same quota on common supports",
+    "selected_metrics": ["predicted Q", "within-group scaled-coordinate RMS", "nominal screen", "bootstrap sensitivity screen"],
+    "cost_efficiency": "increment per calibrated added cost and paired five-run differences",
+    "final_output_comparison": "all-discovered feasible pool and one-representative/final-output compression are reported separately"
+  },
+  "guardrails": [
+    "no predictor training or parameter tuning",
+    "no change to GA, MPGA, generator, thresholds or elite rules",
+    "no outcome-adaptive budget",
+    "no claim of exact equal compute when calibrated wall times differ",
+    "no claim that predicted improvement is measured physical improvement",
+    "no overwrite of historical results, V41 manuscript or figures"
+  ]
+}

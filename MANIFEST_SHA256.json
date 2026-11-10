@@ -1,0 +1,186 @@
+[
+  {
+    "path": "LICENSE",
+    "sha256": "402c602c042d6eec3292124e5b3cf9d2a69812d2039c631267800a658e3825fe"
+  },
+  {
+    "path": "output_cms_v29/reproducibility/three_route/configs/FROZEN_PROTOCOL.json",
+    "sha256": "10e5b60b7be7a7f6e226e8fab70b83af4deb3e24dc4f8079522f13942006ee17"
+  },
+  {
+    "path": "output_cms_v29/reproducibility/three_route/full_archive_workflow/run_frozen_analysis_full_archive.py",
+    "sha256": "2d33f4acf344a8feb0e332c7c5ac061055f906f764176eb5aeb7f6e7418dfc95"
+  },
+  {
+    "path": "output_cms_v31_endpoint_audit_20261028/run_endpoint_diagnostics.py",
+    "sha256": "80ef5d98b16e0392fd069aed5e576c494bbbb1ac6d7ddd47b33f974e5a010943"
+  },
+  {
+    "path": "output_cms_v34/analysis/recombine.py",
+    "sha256": "bad7a506aae9d9370bcc401afc11d4361a1479acfc21e77c9953d42fe44402d8"
+  },
+  {
+    "path": "README.md",
+    "sha256": "264c94336236310e8c070ed8950b2a15b2fac35aaa9e5da742b77a4101217557"
+  },
+  {
+    "path": "requirements.txt",
+    "sha256": "70d0596ef95997979633e71512f1db21a90ecf63479d7f600452e6f803c1786b"
+  },
+  {
+    "path": "S79/configs/AUDIT_PLAN.json",
+    "sha256": "50f29025804a0395f1ec85a2aeba153250ea51821057759333a1a8a0616511a5"
+  },
+  {
+    "path": "S79/configs/FROZEN_PROTOCOL.json",
+    "sha256": "e4e9b4420782e97a9f187a24a1e228319dd153e650a96b71e02411b0a85dde60"
+  },
+  {
+    "path": "S79/inputs/generation_protocol_v1.json",
+    "sha256": "ed80999f100b4a3dad853efb3c3cff503bbe4b28b355c1d3d55e45e974582099"
+  },
+  {
+    "path": "S79/scripts/analyze_three_routes.py",
+    "sha256": "0cd9e8db67d79991f8a89d83bb5402edf730329705c13785ea7a261ed6e31a23"
+  },
+  {
+    "path": "S79/scripts/audit_inputs.py",
+    "sha256": "d70147f68a18a2a9286fdd6d9c71e2cc4ccb93e4ac1e016a40de24c370ffeaa2"
+  },
+  {
+    "path": "S79/scripts/common.py",
+    "sha256": "9153a5e1c36dd1e50d74bc5dd794c2a70eb2dd19376728c10d6a25eb41df5e96"
+  },
+  {
+    "path": "S79/scripts/run_mpg_ga.py",
+    "sha256": "d5c295c230e900487c870a53f276a38e4f85c7af6f7d998f1d6650d519cc3dc1"
+  },
+  {
+    "path": "S79/scripts/verify_delivery.py",
+    "sha256": "a594dcef131c5188f1d52f042941fb48ad7b02e5c0329a40e0d1429f1f050b59"
+  },
+  {
+    "path": "S80/configs/AUDIT_PLAN.json",
+    "sha256": "6e1da3c3c48523801a7017f92b0f571973bec71725a7bdd772ec0c979ee1db01"
+  },
+  {
+    "path": "S80/configs/FROZEN_PROTOCOL.json",
+    "sha256": "02d6e858160a5e2a9c98bfc3710b7d059dbdd944b180224aec5c3cd2cde41b6d"
+  },
+  {
+    "path": "S80/inputs/generation_protocol_v1.json",
+    "sha256": "26f68f1335aee2ccb892ef2cb158ba92fac02a0c5b1b8dd2822066461be159b2"
+  },
+  {
+    "path": "S80/scripts/analyze_cases.py",
+    "sha256": "52748ebce75b9d76c4d2ef29294f8ad1b1eeecfef5e5128e0e32725b97f3057f"
+  },
+  {
+    "path": "S80/scripts/audit_inputs.py",
+    "sha256": "00372d421f598e9c4984decbf026dfac8432644a781c21801f280755cf019bf3"
+  },
+  {
+    "path": "S80/scripts/common.py",
+    "sha256": "ebab61c022191bc46bde080827b1a9f1ccbe25b97d882d4d718e3aef785e3ed7"
+  },
+  {
+    "path": "S80/scripts/run_case.py",
+    "sha256": "552788f49074be8bc5e4b2c84309516de864fff4161edb9c48204bd5b13ca58a"
+  },
+  {
+    "path": "S80/scripts/verify_delivery.py",
+    "sha256": "0b4a7c81c7c6026652d5354a94b1a765b03d50763f379ad5c319632f740c1a33"
+  },
+  {
+    "path": "S81_S82/configs/AUDIT_PLAN.json",
+    "sha256": "50f29025804a0395f1ec85a2aeba153250ea51821057759333a1a8a0616511a5"
+  },
+  {
+    "path": "S81_S82/configs/CALIBRATED_BUDGET.json",
+    "sha256": "efc98eb35670bc1dd7a6ebffb6260cd46bc38e29c2653c23bacfec05760325b3"
+  },
+  {
+    "path": "S81_S82/configs/COST_ONLY_AMENDMENT_BEFORE_OUTCOME_ANALYSIS.json",
+    "sha256": "92d00ffbd375c0331c4ef34aaa8698f7dc7994df1dc2dfdf8e5670a31457c396"
+  },
+  {
+    "path": "S81_S82/configs/FROZEN_PROTOCOL.json",
+    "sha256": "e4e9b4420782e97a9f187a24a1e228319dd153e650a96b71e02411b0a85dde60"
+  },
+  {
+    "path": "S81_S82/configs/MARGINAL_GAIN_PROTOCOL.json",
+    "sha256": "df54aada0bb9d3ac3feca06f9a2fa68b1cd6b84fda0d8ac4a475a30119a59081"
+  },
+  {
+    "path": "S81_S82/configs/MPG_AUDIT_PLAN.json",
+    "sha256": "50f29025804a0395f1ec85a2aeba153250ea51821057759333a1a8a0616511a5"
+  },
+  {
+    "path": "S81_S82/configs/MPG_FROZEN_PROTOCOL.json",
+    "sha256": "e4e9b4420782e97a9f187a24a1e228319dd153e650a96b71e02411b0a85dde60"
+  },
+  {
+    "path": "S81_S82/configs/mpga_protocol_v1.json",
+    "sha256": "9e990685c95a6bf5176557f85925df64413a6eb68229c670f0d28a0b6874fb3c"
+  },
+  {
+    "path": "S81_S82/configs/protocol_v1.json",
+    "sha256": "26f68f1335aee2ccb892ef2cb158ba92fac02a0c5b1b8dd2822066461be159b2"
+  },
+  {
+    "path": "S81_S82/configs/TRACE_PROTOCOL.json",
+    "sha256": "b6fa629370607627ecbe4a645a41e739149ba2e2f4596e87d4ee504b56a72a90"
+  },
+  {
+    "path": "S81_S82/inputs/generation_protocol_v1.json",
+    "sha256": "ed80999f100b4a3dad853efb3c3cff503bbe4b28b355c1d3d55e45e974582099"
+  },
+  {
+    "path": "S81_S82/scripts/analyze_marginal_contrasts.py",
+    "sha256": "d19d8037c28964faf1644ca5d24b8ca2c93bd5b4586ac4778f1c05db466a7301"
+  },
+  {
+    "path": "S81_S82/scripts/analyze_trajectory_retention.py",
+    "sha256": "69854e1ee9ee131032022ff0cc7be298494fa8a582b4e90617999a3b86f483e6"
+  },
+  {
+    "path": "S81_S82/scripts/frozen_core.py",
+    "sha256": "48576197b6054fb16dbee22c6b4464cdb6b4ad91cd6606272383cfdc388640da"
+  },
+  {
+    "path": "S81_S82/scripts/frozen_run_mpga_t.py",
+    "sha256": "3178a25f8bb2911634b9946c5139f287a5302b9db59348631a4a2c24c6f974b6"
+  },
+  {
+    "path": "S81_S82/scripts/mpg_common.py",
+    "sha256": "9153a5e1c36dd1e50d74bc5dd794c2a70eb2dd19376728c10d6a25eb41df5e96"
+  },
+  {
+    "path": "S81_S82/scripts/mpga_v16_common.py",
+    "sha256": "b528cfef16156bd992d5d09a627aea780c974f5d33895dbe569cea34011f86a0"
+  },
+  {
+    "path": "S81_S82/scripts/mspg_common.py",
+    "sha256": "867a3da9cf4572dbe6f272d47a7ff0f1bcbead435f8fe2c68098145af548a0dc"
+  },
+  {
+    "path": "S81_S82/scripts/run_cost_supplement.py",
+    "sha256": "5a317c684c92bda55eca3e9305b77cd27e727b2546d4123cc8e0798a120b9f26"
+  },
+  {
+    "path": "S81_S82/scripts/run_marginal_contrasts.py",
+    "sha256": "78374e3283c2caf29109425e85c5b3f729d9bec553db7b9fe674bc90d92114ee"
+  },
+  {
+    "path": "S81_S82/scripts/run_traced_ga.py",
+    "sha256": "bd6fd5f9c8934e4dbcf5b1a52563099a59b34d29f75d568e83ba3351c675b850"
+  },
+  {
+    "path": "S81_S82/scripts/verify_marginal_delivery.py",
+    "sha256": "15c168a8c55427e6b56054583af0aee9947fd24fad3b44e3262fedcb7140ca18"
+  },
+  {
+    "path": "SOURCE_MANIFEST_SHA256.json",
+    "sha256": "a7ad57e59f081b247ba31ec180f3f6be1f5a7ee4c8c54f55cdd0c2ce760fb3ab"
+  }
+]

@@ -1,0 +1,48 @@
+{
+  "status": "FROZEN_BEFORE_MPG_GA_FORMAL_RESULTS",
+  "frozen_at": "2026-11-04T00:00:00+08:00",
+  "case": "industrial_pp_100",
+  "runs": [1, 2, 3, 4, 5],
+  "upstream": {
+    "source": "archived best_feasible_per_successful_start.npz",
+    "one_representative_per_successful_mpg_start": true,
+    "representative_rule": "archived highest frozen task-quality feasible retained visit",
+    "source_code": 8
+  },
+  "seed_selection": {
+    "per_successful_support": 4,
+    "quality_floor_quantile": 0.5,
+    "order": "best Q first, then maximum minimum normalized Euclidean distance with Q tie-break"
+  },
+  "ga": {
+    "attempts_per_run": 40000,
+    "elite_population": 24,
+    "crossover_probability": 0.8,
+    "crossover_weight_range": [0.15, 0.85],
+    "mutation_probability": 0.7,
+    "mutation_moves_min": 1,
+    "mutation_moves_max": 5,
+    "mutation_quanta_max": 30,
+    "batch_size": 64,
+    "seed_formula": "3101000 + replicate*100 + 3"
+  },
+  "library": {
+    "include_all_reaudited_feasible_mpg_representatives": true,
+    "include_all_accepted_ga_visits": true,
+    "deduplication": "support plus coordinates rounded to 8 decimal places",
+    "portfolio_per_support": 5,
+    "portfolio_quality_floor_quantile": 0.5
+  },
+  "numeric_replay": {
+    "search_acceptance": "NumPy float32 implementation of the frozen PyTorch RBF/quality formula, validated against historical saved G-GA and R-GA predictions before formal runs",
+    "final_comparison": "shared float64 frozen replay on native lattice",
+    "validation_targets": {
+      "maximum_window_normalized_prediction_difference": 0.00002,
+      "maximum_quality_difference": 0.00001,
+      "historical_saved_library_window_flag_mismatches": 0,
+      "maximum_archived_mpg_boundary_representatives_with_replay_flag_change": 2
+    }
+  },
+  "boundary_policy_fixed_before_formal_runs": "Two of 23230 archived feasible MPG representatives have tensile prediction within 1.4e-5 window-normalized units of the upper boundary and change flag under the validated NumPy replay. Preserve their archived feasible identity, prediction and Q as upstream evidence; label them numerical-boundary cases. GA offspring use the validated NumPy float32 replay. Final cross-route analysis uses the shared float64 audit for every source.",
+  "formal_outputs_are_immutable_after_completion": true
+}

@@ -1,0 +1,109 @@
+{
+  "experiment": "constraint_objective_synthesis_no_numeric_anchor_v1_20261010",
+  "case_order": ["industrial_pp_100", "natural_fiber_pp_hdpe", "pcm_polymer_composite"],
+  "replicates": [1, 2, 3, 4, 5],
+  "training_seeds": [101001, 101002, 101003, 101004, 101005],
+  "sampling_seeds": [1101001, 1101002, 1101003, 1101004, 1101005],
+  "methods": ["G_GA", "R_GA", "GR_GA"],
+  "upstream_attempts_per_source": 8000,
+  "downstream_attempts_per_method": 40000,
+  "training": {
+    "latent_dim": 64,
+    "hidden_dims": [192, 256, 256],
+    "phases": [150, 450, 450, 450],
+    "pilot_phases": [2, 3, 3, 3],
+    "learning_rates": [0.0002, 0.0002, 0.0001, 0.00005],
+    "batch_per_structure": 4,
+    "range_weight": 1.0,
+    "engineering_weight": 1.0,
+    "window_weight": 1.0,
+    "objective_weight": 0.15,
+    "diversity_weight": 0.05,
+    "gradient_clip": 1.0
+  },
+  "seed_selection": {
+    "single_source_per_successful_structure": 4,
+    "combined_per_source_per_common_structure": 2,
+    "quality_floor_quantile": 0.5
+  },
+  "ga": {
+    "elite_population": 24,
+    "crossover_probability": 0.8,
+    "mutation_probability": 0.7,
+    "mutation_moves_min": 1,
+    "mutation_moves_max": 5,
+    "mutation_quanta_max": 30,
+    "seed_base": 3101000
+  },
+  "portfolio": {"industrial_pp_100_per_structure": 5, "natural_fiber_pp_hdpe_per_structure": 8, "pcm_polymer_composite_per_structure": 40, "quality_floor_quantile": 0.5},
+  "pilot": {"upstream_attempts_per_source": 400, "downstream_attempts_per_method": 1200},
+  "cases": {
+    "industrial_pp_100": {
+      "dataset": "data/processed/industrial_pp_100_recipes.csv",
+      "source": "industrial PP 100-recipe public snapshot",
+      "space": "simplex",
+      "parameter_mode": "first_90_after_id",
+      "dataset_composition_scale": 100.0,
+      "precision": 0.0001,
+      "ingredient_upper_margin": 1.05,
+      "structure_mode": "unique_support_templates_only",
+      "require_all_template_components": true,
+      "properties": ["flexural_strength_mpa", "melt_index_g_10min", "tensile_strength_mpa", "specific_gravity", "flexural_modulus_mpa"],
+      "windows": [[24.82,42.94],[12.2,34.74],[18.5,28.48],[0.9332,1.0622],[1382.8,2673.4]],
+      "rbf_bandwidth": 0.45,
+      "objective_terms": [{"kind":"property_max","index":0,"weight":0.3},{"kind":"property_max","index":2,"weight":0.3},{"kind":"property_min","index":3,"weight":0.1},{"kind":"property_max","index":4,"weight":0.3}],
+      "evidence_role": "primary industrial computational case; support templates are constraints, numeric recipes are never generator conditions"
+    },
+    "natural_fiber_pp_hdpe": {
+      "dataset": "data/processed/pp_hdpe_banana_recipes.csv",
+      "source": "Espinach et al., J. Cleaner Production 483 (2024) 144244",
+      "space": "simplex",
+      "parameters": ["bcb","vpb","hdpe","pp","banana_fiber","rachis_fiber","mape","mapp"],
+      "ranges": [[0,1],[0,1],[0,1],[0,1],[0,0.35],[0,0.35],[0,0.02],[0,0.02]],
+      "precision": 0.001,
+      "structure_mode": "predefined_engineering_branches",
+      "branches": [
+        {"name":"hdpe_banana","allowed":[2,4,6],"required":[2,4]},
+        {"name":"bcb_banana","allowed":[0,4,6,7],"required":[0,4]},
+        {"name":"bcb_rachis","allowed":[0,5,6,7],"required":[0,5]},
+        {"name":"vpb_rachis","allowed":[1,5,6,7],"required":[1,5]}
+      ],
+      "ratio_constraints": [{"numerator":[6,7],"denominator":[4,5],"min":0.0,"max":0.06}],
+      "properties": ["tensile_strength_mpa","young_modulus_gpa","flexural_strength_mpa","flexural_modulus_gpa"],
+      "windows": [[18,26],[1.3,3.2],[31,42],[1.2,1.6]],
+      "rbf_bandwidth": 0.12,
+      "objective_terms": [{"kind":"property_max","index":0,"weight":0.3333333333},{"kind":"property_max","index":1,"weight":0.2},{"kind":"property_max","index":2,"weight":0.2666666667},{"kind":"property_max","index":3,"weight":0.1333333333},{"kind":"component_sum_max","indices":[0,4,5],"normalizer":1.0,"weight":0.0666666667}],
+      "evidence_role": "small public mechanism-validation case; four branches are engineering constraints, not numeric anchors"
+    },
+    "pcm_polymer_composite": {
+      "dataset": "data/processed/pcm_material_designs.csv",
+      "source": "Mechanical properties of polymer composite materials and their components, DOI 10.17632/p63pgr2hb9.1",
+      "space": "box",
+      "parameters": ["binder_fraction","binder_tensile_mpa","binder_modulus_gpa","binder_density_kg_m3","fabric_warp_tensile_mpa","fabric_warp_modulus_gpa","fabric_surface_density_g_m2","fabric_thickness_mm","warp_fiber_tensile_mpa","warp_fiber_modulus_gpa"],
+      "ranges": [[0.30,0.55],[34.2,94.0],[3.2,5.1],[1137,1327],[82,940],[10,138],[190,385],[0.19,0.38],[2740,6000],[81,290]],
+      "precision": [0.01,0.1,0.01,1,1,1,1,0.01,10,1],
+      "structure_mode": "single_global_box",
+      "properties": ["pcm_tensile_warp_mpa","pcm_compressive_warp_mpa","pcm_bending_warp_mpa","pcm_tensile_modulus_warp_gpa","pcm_density_kg_m3"],
+      "windows": [[500,1200],[230,850],[350,1200],[20,80],[1350,2100]],
+      "rbf_bandwidth": 0.14,
+      "objective_terms": [{"kind":"property_max","index":0,"weight":0.2941176471},{"kind":"property_max","index":1,"weight":0.2352941176},{"kind":"property_max","index":2,"weight":0.2352941176},{"kind":"property_max","index":3,"weight":0.1764705882},{"kind":"property_min","index":4,"weight":0.0588235295}],
+      "evidence_role": "public non-simplex material-design case; no numeric design anchor"
+    }
+  },
+  "prohibited_mechanisms": [
+    "numeric database recipe as generator input",
+    "numeric database recipe as initialization seed",
+    "nearest-row projection or repair",
+    "nearest-row distance as acceptance condition or objective",
+    "generator-radius-matched random baseline"
+  ],
+  "guardrails": [
+    "Database rows define the evaluator and legal problem specification only",
+    "Support templates contain no numeric proportions",
+    "Raw generator output, mathematical projection, and final audit are saved separately",
+    "Random and generated sources use the same explicit structural constraints",
+    "Predicted properties are not measurements",
+    "No invented cost objective",
+    "Existing anchor-conditioned evidence is preserved and never overwritten"
+  ]
+}

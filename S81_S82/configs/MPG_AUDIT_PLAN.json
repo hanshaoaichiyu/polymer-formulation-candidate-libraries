@@ -1,0 +1,41 @@
+{
+  "created": "2026-11-04T00:00:00+08:00",
+  "case": "industrial_pp_100",
+  "purpose": "Compare three coordinated seed-to-GA routes under one frozen downstream GA and preserve output-retention, aggregation-weight and screening-eligibility analyses.",
+  "core_routes": ["Generator_GA", "R_GA", "MPG_GA"],
+  "mpg_seed_definition": "For each MPG-ascent start having at least one feasible retained visit, use exactly its archived highest frozen-task-quality feasible representative as an upstream pool member. Then apply the same per-support median-Q floor plus best-Q/farthest-point seed selector used by Generator-GA and R-GA.",
+  "fairness": {
+    "downstream_attempts_per_route_per_run": 40000,
+    "selected_seeds_per_successful_support": 4,
+    "quality_floor_quantile": 0.5,
+    "same_ga_parameters": true,
+    "same_projection_and_audit": true,
+    "same_support_preserving_lineages": true
+  },
+  "formal_runs": [1, 2, 3, 4, 5],
+  "mpg_ga_random_seed_formula": "3101000 + replicate*100 + 3; offset 3 was unused by the historical offsets 0,1,2",
+  "identity": "support ID plus integer coordinates on the native 0.0001 lattice within run",
+  "retained_outputs": [
+    "full feasible upstream representative pool",
+    "selected seed ledger",
+    "all accepted GA visits",
+    "per-lineage receipt",
+    "deduplicated route library",
+    "fixed-size portfolio"
+  ],
+  "evaluation": {
+    "full_supply": ["unique candidates", "support coverage", "Q>=0.75 count", "route overlap and exclusivity"],
+    "matched_selection": "Reuse deterministic Q-upper-half plus farthest-point selection, cap 5 per support, and report candidate-weighted and support-equal summaries.",
+    "screening": "Preserve nominal Q>=0.75 and margin>=0.05 plus frozen bootstrap-sensitive eligibility where available.",
+    "statistical_unit": "five complete runs; candidates and supports are not independent replicates"
+  },
+  "historical_diagnostics_only": ["GR_GA", "MPG_direct_endpoint", "MPG_best_feasible", "MPG_trajectory", "V34_ALL4"],
+  "prohibitions": [
+    "no generator retraining",
+    "no real numeric recipe as an initialization seed",
+    "no nearest-row repair or acceptance",
+    "no overwriting historical formal results",
+    "no post-hoc change of GA parameters or route budget",
+    "no claim of equal wall-clock cost from equal candidate-attempt budgets"
+  ]
+}

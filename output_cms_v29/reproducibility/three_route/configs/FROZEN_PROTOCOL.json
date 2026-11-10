@@ -1,0 +1,156 @@
+{
+  "analysis_id": "cms_v18_three_route_union_posthoc_v1_20261025",
+  "status": "FROZEN_BEFORE_SYSTEM_COMPARISON_RESULTS",
+  "analysis_type": "post-hoc read-only analysis of existing formal candidates",
+  "research_object": "the combined system of G_GA, R_GA and GR_GA full feasible libraries within each case and replicate",
+  "prohibitions": [
+    "no retraining",
+    "no new candidate generation",
+    "no GA or other optimizer execution",
+    "no modification of source arrays, historical results, figures or manuscripts",
+    "no use of discarded anchor-conditioned system_summary.csv",
+    "no substitution of the V17 endpoint/best-feasible/trajectory comparison for route membership"
+  ],
+  "source": {
+    "root": "PES_constraint_synthesis_no_anchor_20261010_v1",
+    "formal_root": "PES_constraint_synthesis_no_anchor_20261010_v1/results_raw/formal_v1",
+    "cases": [
+      "industrial_pp_100",
+      "natural_fiber_pp_hdpe",
+      "pcm_polymer_composite"
+    ],
+    "replicates": [1, 2, 3, 4, 5],
+    "routes": ["G_GA", "R_GA", "GR_GA"],
+    "route_membership_bits": {"G_GA": 1, "R_GA": 2, "GR_GA": 4},
+    "comparison_arms": [
+      "G_GA",
+      "R_GA",
+      "GR_GA",
+      "G_GA+R_GA",
+      "G_GA+GR_GA",
+      "R_GA+GR_GA",
+      "ALL"
+    ],
+    "source_bits_interpretation": "within-route G/R ancestry only; never used as route membership",
+    "formal_budget": {
+      "upstream_G_attempts": 8000,
+      "upstream_R_attempts": 8000,
+      "GR_upstream_is_a_4000_plus_4000_subset_of_the_shared_G_R_pools": true,
+      "GA_attempts_per_route": 40000,
+      "GA_attempts_three_route_system": 120000
+    }
+  },
+  "deduplication": {
+    "scope": "within case and replicate only; never across replicates",
+    "key": "support/template integer ID plus every composition coordinate converted to the protocol's native precision integer lattice",
+    "simplex_integer_coordinate": "round(x_k / precision_k)",
+    "box_integer_coordinate": "round((x_k - lower_k) / precision_k)",
+    "duplicate_merge": "retain one coordinate and frozen evaluator output, OR route membership bits, OR source_bits, max latest_stage, and retain original row index for every route",
+    "consistency_tolerance": 1e-5,
+    "coordinate_neighborhood_merging": false
+  },
+  "full_supply": {
+    "arms": [
+      "G_GA",
+      "R_GA",
+      "GR_GA",
+      "G_GA+R_GA",
+      "G_GA+GR_GA",
+      "R_GA+GR_GA",
+      "ALL"
+    ],
+    "metrics": [
+      "unique candidate count",
+      "route membership overlap and exclusivity",
+      "support coverage",
+      "Q threshold counts"
+    ],
+    "Q_thresholds": [0.6, 0.7, 0.75, 0.8]
+  },
+  "selection": {
+    "case_template_caps": {
+      "industrial_pp_100": 5,
+      "natural_fiber_pp_hdpe": 8,
+      "pcm_polymer_composite": 40
+    },
+    "within_template_candidate_pool": "the arm's own Q upper half, Q >= NumPy linear median/0.5 quantile; ties at the median are included",
+    "first_candidate": "highest Q; ties resolved by lexicographically smaller integer coordinate and then smaller union candidate ID",
+    "subsequent_candidates": "maximize minimum Euclidean distance in frozen evaluator-scaled coordinates to already selected candidates; ties resolved by higher Q, then lexicographically smaller integer coordinate, then smaller union candidate ID",
+    "distance_scale": "the frozen Problem.scale derived by the original no-anchor evaluator",
+    "common_support_layer": {
+      "supports": "intersection of supports available to all seven comparison arms within the same case and replicate",
+      "per_template_n": "minimum of the frozen case cap and the smallest upper-half candidate count across all seven arms for that template",
+      "equal_output_condition": "every arm uses exactly the same supports and the same n within every support"
+    },
+    "full_domain_equal_total_layer": {
+      "supports": "each arm's own available supports",
+      "template_candidate_cap": "the frozen case cap after the same upper-half/farthest-point rule",
+      "target_total_n": "minimum selectable capacity across all seven arms in the same case and replicate; capacity uses counts only, not Q outcomes",
+      "allocation": "round-robin one candidate per sorted support ID per pass, following each support's frozen within-template selection order and skipping exhausted supports until target_total_n is filled",
+      "shortage": "record actual target, arm capacity and any unfilled count; never replace it by enlarging another arm or changing support order"
+    }
+  },
+  "screening": {
+    "nominal": {
+      "Q_min": 0.75,
+      "minimum_standardized_window_margin_min": 0.05
+    },
+    "sensitivity": {
+      "requires_nominal": true,
+      "bootstrap_joint_window_pass_frequency_min": 0.8,
+      "bootstrap_repeats": 200,
+      "bootstrap_input": "the existing frozen V11 per-case bootstrap count arrays",
+      "allowed_computation": "recalculate frozen-kernel predictions only for the final selected candidates; no fitting and no full-library sensitivity census"
+    },
+    "aggregation_weights": [
+      "candidate-weighted over selected candidates",
+      "template-equal mean of within-template rates"
+    ]
+  },
+  "metrics": {
+    "Q": ["mean", "median", "p10", "maximum"],
+    "coverage": ["selected candidate count", "selected support count"],
+    "within_template_diversity": [
+      "mean pairwise standardized Euclidean distance",
+      "RMS pairwise standardized Euclidean distance",
+      "mean nearest-neighbor standardized Euclidean distance"
+    ],
+    "diversity_aggregation": [
+      "template-equal over templates with at least two selected candidates",
+      "candidate/pair-weighted where mathematically defined"
+    ],
+    "route_contribution": [
+      "ALL selected-set exclusive and shared route membership counts",
+      "drop-one paired changes from ALL to each two-route arm under the same layer and output-size rule"
+    ]
+  },
+  "uncertainty_and_repetition": {
+    "statistical_unit": "one complete replicate/run",
+    "n": 5,
+    "reports": ["each run", "five-run mean", "sample SD", "paired per-run arm difference"],
+    "forbidden": [
+      "treating candidates or supports as independent replicates",
+      "post-hoc weighted composite score",
+      "parameter changes to obtain significance"
+    ]
+  },
+  "budget_boundary": {
+    "main_comparison": "equal final output size, not equal compute budget",
+    "three_route_system_GA_attempts": 120000,
+    "single_route_GA_attempts": 40000,
+    "shared_upstream_attempts": 16000,
+    "equal_budget_truncation_performed": false,
+    "reason": "library rows do not retain GA attempt indices; accepted-event order omits rejected proposals and library construction mixes upstream candidates with deduplicated accepted visits"
+  },
+  "required_outputs": [
+    "field audit and gap statement",
+    "read-only input manifest and unchanged hash verification",
+    "per-case/per-run compressed union ledger with integer coordinates, frozen outputs, membership, source bits and original row mapping",
+    "compact per-candidate membership ledger",
+    "common-support and full-domain selected candidate ledgers and index arrays",
+    "per-template and per-run metrics",
+    "paired contrasts and drop-one route contributions",
+    "budget statement",
+    "Chinese report defining supported, unsupported and unanswered claims"
+  ]
+}

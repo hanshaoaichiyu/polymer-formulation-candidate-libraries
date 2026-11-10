@@ -1,0 +1,34 @@
+{
+  "created_before_new_case_outcomes": true,
+  "cases": ["natural_fiber_pp_hdpe", "pcm_polymer_composite"],
+  "runs": [1, 2, 3, 4, 5],
+  "core_routes": ["Generator_GA", "R_GA", "MPG_GA"],
+  "combined_library": "TRI_GA is the exact audited union of the three completed route libraries, not a fourth search algorithm.",
+  "mpg_start_population": "Use all 8000 saved formal upstream R designs for the same case and run after their explicit mathematical projection. Do not condition on saved feasibility and do not use observed recipe values.",
+  "mpg_representative": "For each start with at least one audited feasible step-zero or accepted visit, retain the visit with maximum frozen task Q; ties retain the earliest visit.",
+  "mpg_output_record": "Save per-start visit counts, best representative identity, Q, prediction, margin, step and generating continuous objective; rejected line-search trials are not candidate outputs.",
+  "downstream_fairness": {
+    "seed_selector": "within each successful structure, Q at or above the within-pool median; choose best Q first, then farthest normalized composition with Q tie-break",
+    "seeds_per_structure": 4,
+    "GA_attempts_per_case_run": 40000,
+    "GA_parameters": "identical to the frozen Generator-GA and R-GA protocol",
+    "lineages": "each selected seed is optimized independently without cross-lineage mixing"
+  },
+  "evaluation": {
+    "shared_replay": "float64 frozen RBF evaluator, explicit structural constraints and native lattice",
+    "identity": "structure plus native integer coordinates",
+    "full_supply": ["unique candidates", "support coverage", "Q>=0.75 count", "route membership and exclusivity"],
+    "fixed_selection": "case-specific frozen cap, within-support median-Q floor, best-Q then farthest-point order",
+    "screening": "nominal Q>=0.75 and standardized margin>=0.05; sensitivity additionally requires frozen 200-bootstrap joint-window frequency>=0.80",
+    "aggregation": "five complete runs; report candidate-weighted and support-equal summaries; candidates are not independent replicates"
+  },
+  "prohibitions": [
+    "no generator retraining",
+    "no observed numeric recipe as a start or repair anchor",
+    "no nearest-row acceptance or objective",
+    "no overwrite of V35 or historical formal results",
+    "no outcome-based parameter change",
+    "no equal-wall-clock claim from equal GA-attempt budgets",
+    "no manuscript or figure edit"
+  ]
+}

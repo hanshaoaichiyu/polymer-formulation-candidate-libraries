@@ -1,0 +1,11 @@
+{
+  "status": "FROZEN_AFTER_REPLICATE_1_COST_RECEIPT_BEFORE_ANY_CANDIDATE_OUTCOME_ANALYSIS",
+  "date": "2026-11-06",
+  "reason": "The frozen five-batch B2 arm used 7.253 seconds in formal replicate 1, 26.94% below the 9.928-second Generator-GA calibration anchor. This amendment uses cost only, not candidate quality.",
+  "main_result_unchanged": "B2 remains the pre-calibrated five-batch conservative budget-within arm.",
+  "supplementary_cost_match": "Generate one additional independent 8,000-candidate batch (batch index 5) for every replicate and analyze B2_six_batch separately.",
+  "classification": "For each replicate, B2_six_batch is called budget-matched only if its measured total time does not exceed that replicate's newly measured no-logging Generator-GA time; otherwise it is reported as over budget.",
+  "ga_cost_measurement": "Measure no-logging MPG-GA and Generator-GA 40,000-attempt runtimes independently for all five replicates on the same serial hardware.",
+  "outcome_adaptation": false,
+  "manuscript_or_figure_modified": false
+}

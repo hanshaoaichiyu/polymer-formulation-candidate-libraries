@@ -1,0 +1,62 @@
+{
+  "status": "FROZEN_BEFORE_TWO_CASE_PILOT_OR_FORMAL_OUTCOMES",
+  "frozen_at": "2026-11-05T00:00:00+08:00",
+  "cases": ["natural_fiber_pp_hdpe", "pcm_polymer_composite"],
+  "runs": [1, 2, 3, 4, 5],
+  "starts": {
+    "source": "PES_constraint_synthesis_no_anchor_20261010_v1/results_raw/formal_v1/CASE/replicate_N/upstream/R/candidates.npz design and structure",
+    "count_per_run": 8000,
+    "use_all_structurally_projected_starts_regardless_of_window_feasibility": true,
+    "numeric_database_anchor_used": false
+  },
+  "mpg_ascent": {
+    "geometry": "projected gradient ascent in normalized coordinates; bounded-simplex projection for simplex cases and clipping for box cases",
+    "ratio_constraints": "natural-fiber continuous trials are deterministically repaired to the declared coupling constraint before objective evaluation",
+    "maximum_updates_per_start": 120,
+    "initial_step_size": 0.05,
+    "armijo_c1": 0.0001,
+    "backtracking_factor": 0.5,
+    "maximum_backtracks_per_update": 20,
+    "projected_step_norm_tolerance": 1e-8,
+    "directional_derivative_tolerance": 1e-12,
+    "objective_increase_tolerance": 1e-12,
+    "continuous_objective": "frozen Q minus 10 times summed squared normalized two-sided window violation",
+    "best_upstream_representative": "maximum audited discrete feasible Q per successful start; earliest visit breaks ties",
+    "rejected_trials_not_retained": true
+  },
+  "seed_selection": {
+    "quality_floor_quantile": 0.5,
+    "per_successful_structure": 4,
+    "ordering": "best Q first, then maximum minimum normalized Euclidean distance with Q tie-break"
+  },
+  "ga": {
+    "attempts_per_run": 40000,
+    "elite_population": 24,
+    "crossover_probability": 0.8,
+    "crossover_weight_range": [0.15, 0.85],
+    "mutation_probability": 0.7,
+    "mutation_moves_min": 1,
+    "mutation_moves_max": 5,
+    "mutation_quanta_max": 30,
+    "batch_size": 64,
+    "seed_formula": "3101000 + replicate*100 + 3"
+  },
+  "portfolio_per_structure": {
+    "natural_fiber_pp_hdpe": 8,
+    "pcm_polymer_composite": 40
+  },
+  "pilot": {
+    "replicate": 1,
+    "starts_per_structure": 24,
+    "maximum_updates": 8,
+    "GA_attempts": 800,
+    "technical_only_excluded_from_formal_statistics": true
+  },
+  "numeric_replay_validation": {
+    "historical_routes": ["G_GA", "R_GA"],
+    "maximum_window_normalized_prediction_difference": 0.00002,
+    "maximum_quality_difference": 0.00001,
+    "maximum_window_flag_mismatches": 0
+  },
+  "formal_outputs_immutable_after_completion": true
+}

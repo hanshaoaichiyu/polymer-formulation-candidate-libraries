@@ -1,0 +1,32 @@
+{
+  "status": "FROZEN_BEFORE_TRAJECTORY_RERUN",
+  "frozen_at": "2026-11-06T00:00:00+08:00",
+  "case": "industrial_pp_100",
+  "routes": ["Generator_GA", "R_GA", "MPG_GA"],
+  "replicates": [1, 2, 3, 4, 5],
+  "scientific_protocol": "unchanged from original formal route-specific protocols",
+  "logging_only": true,
+  "random_consumption_rule": "logging and serialization must not call the route RNG",
+  "event_definition": "one real 64-proposal GA update, or the final smaller update within a lineage quota; no synthetic generations",
+  "saved_objects": [
+    "initial population",
+    "complete population before and after every real update",
+    "all audited proposals and acceptance status",
+    "final complete elite population",
+    "route, run, support, lineage, update and proposal identities",
+    "coordinates and native-lattice integer identities",
+    "Q, predicted responses, structural/window/feasible flags",
+    "parent identities, crossover and mutation decisions",
+    "RNG state at route start and lineage boundaries",
+    "termination and runtime environment"
+  ],
+  "high_quality_threshold": 0.75,
+  "coordinate_identity": "structure plus native-lattice integer coordinate vector",
+  "quality_tie_tolerance": 0.000001,
+  "prohibited": [
+    "changing GA operators, seed selection, budget, predictor, precision, Q, windows, projection, audit, deduplication or elite strategy",
+    "using logging to consume random numbers",
+    "replacing or overwriting historical formal results",
+    "presenting a non-identical replay as the original trajectory"
+  ]
+}
